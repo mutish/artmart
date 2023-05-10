@@ -6,4 +6,6 @@
     <string name="title_activity_toolsand_resources">ToolsandResources</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_inventory">Inventory</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send">Send</string>
 </resources>

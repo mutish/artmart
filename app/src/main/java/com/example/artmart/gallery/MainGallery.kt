@@ -27,4 +27,5 @@ class MainGallery : ComponentActivity() {
 @Composable
 fun GalleryDisplay(pieces: ArtPieces){
 
+
 }

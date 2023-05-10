@@ -29,15 +29,40 @@ import com.example.artmart.R
 import com.example.artmart.tools.ui.theme.ArtmartTheme
 
 class ToolsandResources : ComponentActivity() {
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ArtmartTheme {
-                Surface() {
-
-
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                backgroundColor = Color.Yellow,
+                                title = {
+                                    Text(
+                                        text = "Tools and Resources",
+                                        modifier = Modifier.fillMaxWidth(),
+                                        textAlign = TextAlign.Left,
+                                        color = Color.White,
+                                        style = TextStyle(
+                                            fontSize = 12.sp,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    )
+                                }
+                            )
+                        }
+                    ) {
+                        Column {
+                            ClassResources(onClick = {})
+                            SelfTaughtResources(onClick = {})
+                        }
+                    }
                 }
-
             }
         }
     }
@@ -56,7 +81,7 @@ fun ClassResources(onClick: () -> Unit) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
-                    painter = painterResource(R.drawable.books),
+                    painter = painterResource(R.drawable.artmart),
                     contentDescription = "Thumbnail",
                     modifier = Modifier.fillMaxWidth()
                 )

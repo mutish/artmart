@@ -10,4 +10,4 @@ TUESDAY
 2.SplashScreen ->
 3.Begin on tools
 
-WEDNESDAY s
+change image in tools and resources

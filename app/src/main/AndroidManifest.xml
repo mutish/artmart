@@ -16,34 +16,32 @@
         android:theme="@style/Theme.Artmart"
         tools:targetApi="31">
         <activity
-            android:name=".Inventory"
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".marketplace.Inventory"
             android:exported="false"
             android:label="@string/title_activity_inventory"
-            android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:label="@string/title_activity_splash_screen"
-            android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".MyCommunity"
-            android:exported="false"
-            android:label="@string/title_activity_my_community"
-            android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".Market"
-            android:exported="false"
-            android:label="@string/title_activity_market"
-            android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".MainGallery"
-            android:exported="false"
-            android:label="@string/title_activity_main_gallery"
             android:theme="@style/Theme.Artmart" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:theme="@style/Theme.Artmart" />
+        <activity
+            android:name=".community.MyCommunity"
+            android:exported="false"
+            android:label="@string/title_activity_my_community"
+            android:theme="@style/Theme.Artmart" />
+        <activity
+            android:name=".marketplace.Market"
+            android:exported="false"
+            android:label="@string/title_activity_market"
+            android:theme="@style/Theme.Artmart" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:label="@string/title_activity_splash_screen"
             android:theme="@style/Theme.Artmart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
