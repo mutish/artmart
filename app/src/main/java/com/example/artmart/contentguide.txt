@@ -1,0 +1,13 @@
+once the app is launched:
+1. Log in of the user either as a an artist(vendor) or as a client(art enthusiast)
+2.if it is a vendor:
+       -> the user can add in their own pieces
+       -> place in their contacts
+3. else the client has no access to adding info in the app
+make use of splashscreen
+TUESDAY
+1. Do MainActivity -> login
+2.SplashScreen ->
+3.Begin on tools
+
+WEDNESDAY s

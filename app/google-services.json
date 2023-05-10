@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951366395281",
+    "project_id": "artmart-fd519",
+    "storage_bucket": "artmart-fd519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951366395281:android:8f196c0bbafa6e4bdde630",
+        "android_client_info": {
+          "package_name": "com.example.artmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951366395281-clv7nrh2vbngrugcup43f2j4f4th5vqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFTAQTtIUHr13iKEWNEJEEaSFsrfv75hI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951366395281-clv7nrh2vbngrugcup43f2j4f4th5vqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
