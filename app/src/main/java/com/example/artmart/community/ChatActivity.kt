@@ -3,6 +3,7 @@ package com.example.artmart.community
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
                 val sender = FirebaseAuth.getInstance().currentUser?.uid
                 val timestamp = ServerValue.TIMESTAMP
                 val messageRef = database.getReference("messages").push()
-                messageRef.setValue(sender?.let { it1 -> Message(message, it1, timestamp) })
+                messageRef.setValue(sender?.let { it1 -> Message(it1, message, it1, timestamp) })
                 messageInput.text.clear()
             }
         }
@@ -59,19 +60,48 @@ class ChatActivity : AppCompatActivity() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                // Not used in this example
+                val message = snapshot.getValue(Message::class.java)
+                if(message != null){
+                    //find message in list and update
+                    val index = messages.indexOfFirst { it.id == message.id }
+                    if(index >= 0){
+                        messages[index] = message
+                        adapter.notifyItemChanged(index)
+                    }
+
+                }
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                // Not used in this example
+                val message = snapshot.getValue(Message::class.java)
+                if (messages != null){
+                    //finding message and removing it
+                    val index = messages.indexOfFirst { it.id == message!!.id }
+                    if (index >= 0){
+                        messages.removeAt(index)
+                        adapter.notifyItemRemoved(index)
+
+                    }
+
+                }
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                // Not used in this example
+                val message = snapshot.getValue(Message::class.java)
+                if (message != null) {
+                    // find the message in the list and move it to its new position
+                    val index = messages.indexOfFirst { it.id == message.id }
+                    if (index >= 0) {
+                        messages.removeAt(index)
+                        val newIndex = if (previousChildName == null) 0 else messages.indexOfFirst { it.id == previousChildName } + 1
+                        messages.add(newIndex, message)
+                        adapter.notifyItemMoved(index, newIndex)
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Not used in this example
+                Log.e("Chat Activity","Error reading from database: ${error.message}" )
             }
         })
     }
@@ -91,7 +121,7 @@ class MessageAdapter(private val messages: ArrayList<Message>) :
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return messages.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
