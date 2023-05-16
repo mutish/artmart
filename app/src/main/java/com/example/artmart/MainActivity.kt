@@ -2,23 +2,25 @@ package com.example.artmart
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,8 +36,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ArtmartTheme() {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.primary) {
+            ArtmartTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
                     Scaffold(topBar = {
                         TopAppBar(backgroundColor = Color.LightGray,
                         title = {
@@ -48,7 +50,9 @@ class MainActivity : ComponentActivity() {
                         })
                     }) {
                         Column(modifier = Modifier.padding(it)) {
+
                             phoneauthenticationUI(LocalContext.current)
+
 
                         }
                     }
@@ -61,6 +65,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
+
 
 // OTP REQUEST METHODS
 // sign in methods will include google sign in and sms otp
@@ -82,6 +89,8 @@ fun phoneauthenticationUI(context : Context){
     val message = remember{
         mutableStateOf("")
     }
+    //spinner
+    var isLoading by remember { mutableStateOf(false)    }
 
     //Firebase Authentication
     var mAuth : FirebaseAuth = FirebaseAuth.getInstance()
@@ -95,6 +104,10 @@ fun phoneauthenticationUI(context : Context){
         .background(Color.White),
         verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(painter = painterResource(id = R.drawable.key),
+            contentDescription =null,
+        modifier = Modifier
+            .clip(RoundedCornerShape(4.dp)))
         TextField(
             value = phoneNumber.value,
             onValueChange ={ phoneNumber.value = it },
@@ -103,25 +116,26 @@ fun phoneauthenticationUI(context : Context){
             modifier = Modifier
                 .padding(17.dp)
                 .fillMaxWidth(),
-            textStyle = TextStyle(color = Color.Gray, fontSize = 16.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
             singleLine = true
         )
         Spacer(modifier = Modifier.height(10.dp))
-        //otp call button
+        //otp call Gallerybutton
         Button(onClick = {
             // checking if the phone No variable is empty
             if(TextUtils.isEmpty(phoneNumber.value.toString())){
                 Toast.makeText(context, "Phone number cannot be empty",Toast.LENGTH_LONG).show()
             }else {
                 // COUNTRY CODE
-                val number = "+254${phoneNumber}"
+                val number = "+254${phoneNumber.value}"
                 sendVerificationCode(number,mAuth,context as Activity, callback)
             }
+            isLoading = true
 
         }) {
             Text(text ="Get OTP", modifier = Modifier.padding(8.dp))
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
 
         // OTP fields
 
@@ -147,6 +161,7 @@ fun phoneauthenticationUI(context : Context){
                 // login in with the OTP Credentials
                 signInWithPhoneAuthCredentials(credential,mAuth,context as Activity, context, message)
             }
+            isLoading = true
 
         },
             modifier = Modifier
@@ -154,6 +169,11 @@ fun phoneauthenticationUI(context : Context){
                 .padding(16.dp)
         ) {
             Text(text = "Verify OTP" , modifier = Modifier.padding(8.dp))
+        }
+        if (isLoading){
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center,){
+                CircularProgressIndicator()
+            }
         }
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -208,7 +228,7 @@ private fun signInWithPhoneAuthCredentials(
         if (it.isSuccessful) {
             message.value = "Verification is Successful"
             Toast.makeText(context, "Verification is successful", Toast.LENGTH_LONG).show()
-            // go to relevant activity
+           launchHomeScreen(context)
 
         } else {
             if (it.exception is FirebaseAuthInvalidCredentialsException) {
@@ -221,7 +241,13 @@ private fun signInWithPhoneAuthCredentials(
     }
 }
 
+fun launchHomeScreen(context: Activity){
+    val intent = Intent(context, HomeActivity::class.java)
+    context.startActivity(intent)
 
-//after verification the user is taken to a home screen
+}
+
+
+
 
 

@@ -1,4 +1,4 @@
-package com.example.artmart.marketplace.models
+package com.example.artmart.models
 
 data class ArtSaleClass(
     var artid: String,
