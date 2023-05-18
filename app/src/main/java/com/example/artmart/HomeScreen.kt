@@ -29,5 +29,3 @@ fun HomeScreen(onDetailsClick: (id:Long)-> Unit) {
         }
     }
 }
-
-

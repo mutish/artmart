@@ -50,7 +50,7 @@ class SplashScreen : ComponentActivity() {
                             Button(onClick = { startTheAuthenticationActivity()},
                                 colors = ButtonDefaults.outlinedButtonColors(Color.Blue)
                                 ) {
-                                Text(text = "Sign Up", fontWeight = FontWeight.Bold, color = Color.Black)
+                                Text(text = "Get Started ", fontWeight = FontWeight.Bold, color = Color.Black)
                             }
                         }
                     }
@@ -107,7 +107,7 @@ class SplashScreen : ComponentActivity() {
 
 
     private fun startTheAuthenticationActivity() {
-        val intent = Intent(this,HomeActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
 
     }

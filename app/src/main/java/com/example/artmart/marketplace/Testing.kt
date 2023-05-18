@@ -1,4 +1,4 @@
-package com.example.artmart
+package com.example.artmart.marketplace
 
 import android.content.Context
 import android.content.Intent
@@ -15,16 +15,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -34,7 +30,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.artmart.marketplace.Inventory
+import com.example.artmart.MainActivity
+import com.example.artmart.R
 import com.example.artmart.marketplace.ui.theme.ArtmartTheme
 import com.example.artmart.models.ArtSaleClass
 import com.google.firebase.auth.FirebaseAuth

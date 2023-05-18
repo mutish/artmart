@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+Market.kt
+history.txt

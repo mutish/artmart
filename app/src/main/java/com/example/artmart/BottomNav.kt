@@ -62,7 +62,6 @@ fun Navigation(navController: NavHostController){
             MainScreen()
 
 
-
         }
 
         composable(BottomNavigationItems.Class.route){
