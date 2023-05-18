@@ -1,3 +1,10 @@
 package com.example.artmart
 
-data class Categories(val name:String, val imageRes:Int)
+import androidx.annotation.DrawableRes
+
+data class Categories(
+    val id:Long,
+    val name:String,
+    @DrawableRes val imageRes:Int,
+    val info: String
+)

@@ -1,0 +1,168 @@
+@Composable
+fun CustomImageDialog(
+    showDialog: Boolean,
+    onDismiss: () -> Unit,
+    customer: Customer
+) {
+    if (showDialog) {
+        Dialog(
+            onDismissRequest = { onDismiss() }
+        ) {
+            Box(
+                modifier = Modifier
+                    .background(Color.White)
+                    .padding(16.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        if (customer != null) {
+                            Image(
+                                painter = rememberImagePainter(data = customer.goods_Photo_Url),
+                                contentDescription = "Goods Photo",
+                                modifier = Modifier
+                                    .size(300.dp)
+                                    .clip(CircleShape)
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+                    if (customer != null) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            elevation = 4.dp
+                        ) {
+                            Text(
+                                text = customer.name,
+                                style = MaterialTheme.typography.h3,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(16.dp)
+                            )
+                        }
+                    }
+
+                    LazyColumn(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                    ) {
+
+                        item {
+                            if (customer != null) {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp),
+                                    elevation = 4.dp
+                                ) {
+                                    Column() {
+                                        Text(
+                                            text = "Phone Number: ${customer.phone_Number}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                        Text(
+                                            text = "Current Location: ${customer.current_Location}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                    }
+
+                                }
+                            }
+                        }
+
+
+                        item {
+                            if (customer != null) {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp),
+                                    elevation = 4.dp
+                                ) {
+                                    Column() {
+                                        Text(
+                                            text = "Target Location: ${customer.target_Location}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                        Text(
+                                            text = "Goods Type: ${customer.goods_Type}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                    }
+
+                                }
+                            }
+                        }
+
+
+                        item {
+                            if (customer != null) {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp),
+                                    elevation = 4.dp
+                                ) {
+                                    Column() {
+                                        Text(
+                                            text = "Goods Nature: ${customer.goods_Nature}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                        Text(
+                                            text = "Proposed Price: ${customer.proposed_Price}",
+                                            modifier = Modifier.padding(16.dp)
+                                        )
+                                    }
+
+                                }
+                            }
+                        }
+
+
+                    }
+
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row() {
+                            Button(onClick = {
+
+
+                                simulateCheckout(customer)
+
+                            }) {
+
+                                Text(text = "Checkout")
+                            }
+
+                        Button(
+                            onClick = { onDismiss() },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+                        ) {
+                            Text("OK", color = Color.White)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

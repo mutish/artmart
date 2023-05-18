@@ -112,7 +112,7 @@ fun phoneauthenticationUI(context : Context){
             value = phoneNumber.value,
             onValueChange ={ phoneNumber.value = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            placeholder = { Text(text = "Enter phone number")},
+            placeholder = { Text(text = "Enter phone number",color = Color.Black)},
             modifier = Modifier
                 .padding(17.dp)
                 .fillMaxWidth(),
@@ -143,7 +143,7 @@ fun phoneauthenticationUI(context : Context){
             value = otp.value,
             onValueChange = {otp.value = it},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            placeholder = { Text(text = "Enter OTP code")},
+            placeholder = { Text(text = "Enter OTP code", color = Color.Black)},
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth(),

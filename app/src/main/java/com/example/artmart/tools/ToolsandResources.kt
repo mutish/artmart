@@ -123,7 +123,7 @@ fun ClassResources(onClick: () -> Unit) {
                             text = AnnotatedString("Click here to get started"),
                             style = TextStyle(color = Color.Blue, textDecoration = TextDecoration.Underline),
                             onClick = {
-                                uriHandler.openUri("https://courses.laimoon.com/kenya/media-creative-and-design/art-and-sculpture/painting")
+                                uriHandler.openUri("https://www.brendanmeachen.com/soloartist")
                             },
                             modifier = Modifier.padding(16.dp)
                         )

@@ -4,10 +4,11 @@
     <string name="title_activity_market">Market</string>
     <string name="title_activity_my_community">MyCommunity</string>
     <string name="title_activity_toolsand_resources">ToolsandResources</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_splash_screen">ArtMart</string>
     <string name="title_activity_inventory">Inventory</string>
     <string name="enter_message">Enter Message</string>
     <string name="send">Send</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_bottom_nav">BottomNav</string>
+    <string name="title_activity_testing">Testing</string>
 </resources>

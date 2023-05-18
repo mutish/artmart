@@ -9,6 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -26,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -67,7 +69,7 @@ class Inventory : ComponentActivity() {
                                 text = "Art Inventory",
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center,
-                                color = Color.White,
+                                color = Color.Black,
                                 style = TextStyle(fontStyle = FontStyle.Italic, fontWeight = FontWeight.Bold)
 
                             )
@@ -149,15 +151,16 @@ lifecycleScope: LifecycleCoroutineScope, favouritesDatabase: FavouritesDAO) {
             text = "Gallery!!",
             modifier = Modifier.padding(10.dp),
             style = TextStyle(
-                color = Color.Black, fontSize = 16.sp
+                color = Color.Black, fontSize = 30.sp, fontFamily = FontFamily.Cursive
             ), fontWeight = FontWeight.Bold
         )
+
         ShowFave(
             favouritesDatabase = favouritesDatabase,
             lifecycleScope = lifecycleScope
         )
 
-        LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+        LazyColumn {
             items(artList) { artproduct ->
                 //custom ui
                 ArtCard(product = artproduct!!, context,lifecycleScope,favouritesDatabase)
@@ -203,8 +206,8 @@ fun ShowFave(favouritesDatabase: FavouritesDAO, lifecycleScope: LifecycleCorouti
                                 Column(modifier = Modifier.padding(16.dp)) {
                                     Text(text = it.favouriteName, fontWeight = FontWeight.Bold)
                                     Text("Image download link : ${it.favouriteImage}")
-                                    Text("Product Seller : ${it.favouriteContact}")
-                                    Text("Product Price : ${it.favouritePrice}")
+//                                    Text("Product Seller : ${it.favouriteContact}")
+//                                    Text("Product Price : ${it.favouritePrice}")
                                 }
                             }
                         }
@@ -239,7 +242,8 @@ fun ShowFave(favouritesDatabase: FavouritesDAO, lifecycleScope: LifecycleCorouti
         Card(
             modifier = Modifier
                 .padding(8.dp)
-                .fillMaxWidth(), elevation = 4.dp
+                .fillMaxWidth()
+                .clickable {  }, elevation = 4.dp
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
@@ -260,15 +264,18 @@ fun ShowFave(favouritesDatabase: FavouritesDAO, lifecycleScope: LifecycleCorouti
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold
                 )
-                Text(text = "Seller Contact: ${product.phonenumber}")
-                Text(text = "Seller Price: ${product.price}")
+                Text(text = "Artist: ${product.artist}",
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Light,
+                fontSize = 12.sp)
+//                Text(text = "Seller Price: ${product.price}")
                 Spacer(modifier = Modifier.height(5.dp))
                 // define state to track loading process
                 var isLoading by remember {
                     mutableStateOf(false)
                 }
                 // row
-                Column() {
+                Row() {
                     Button(onClick = {
                         isLoading = true
                         // get the current time and date
@@ -289,6 +296,7 @@ fun ShowFave(favouritesDatabase: FavouritesDAO, lifecycleScope: LifecycleCorouti
                         } else {
                             Icon(painter = painterResource(id = R.drawable.like), contentDescription =null )
                         }
+
                     }
 
                 }

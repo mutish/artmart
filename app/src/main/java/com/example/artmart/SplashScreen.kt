@@ -1,6 +1,5 @@
 package com.example.artmart
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.OvershootInterpolator
@@ -30,8 +29,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.artmart.marketplace.Inventory
-import com.example.artmart.marketplace.Market
 import kotlinx.coroutines.delay
 
 class SplashScreen : ComponentActivity() {
@@ -110,7 +107,7 @@ class SplashScreen : ComponentActivity() {
 
 
     private fun startTheAuthenticationActivity() {
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this,HomeActivity::class.java)
         startActivity(intent)
 
     }

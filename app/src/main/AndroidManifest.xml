@@ -16,6 +16,11 @@
         android:theme="@style/Theme.Artmart"
         tools:targetApi="31">
         <activity
+            android:name=".Testing"
+            android:exported="false"
+            android:label="@string/title_activity_testing"
+            android:theme="@style/Theme.Artmart" />
+        <activity
             android:name=".BottomNav"
             android:exported="false"
             android:label="@string/title_activity_bottom_nav"
@@ -25,9 +30,7 @@
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".ChatActivity"
-            android:exported="false" />
+
         <activity
             android:name=".marketplace.Inventory"
             android:exported="false"
@@ -38,16 +41,12 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".community.ChatActivity"
-            android:exported="false"
-            android:label="@string/title_activity_my_community"
-            android:theme="@style/Theme.Artmart" />
-        <activity
-            android:name=".marketplace.Market"
-            android:exported="false"
-            android:label="@string/title_activity_market"
-            android:theme="@style/Theme.Artmart" />
+
+<!--        <activity-->
+<!--            android:name=".marketplace.Market"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_market"-->
+<!--            android:theme="@style/Theme.Artmart" />-->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
