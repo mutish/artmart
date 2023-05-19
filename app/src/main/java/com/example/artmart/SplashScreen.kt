@@ -107,7 +107,7 @@ class SplashScreen : ComponentActivity() {
 
 
     private fun startTheAuthenticationActivity() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
 
     }
